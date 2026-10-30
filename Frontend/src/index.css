@@ -1,0 +1,40 @@
+/* 1. Use a more-intuitive box-sizing model */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+/* 2. Remove default margins and paddings */
+* {
+  margin: 0;
+  padding: 0;
+}
+
+/* 3. Allow percentage-based heights and smooth scrolling */
+html, body {
+  height: 100%;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* 4. Improve media defaults and prevent overflow */
+img, picture, video, canvas, svg {
+  max-width: 100%;
+  display: block;
+}
+
+/* 5. Inherit fonts for form inputs */
+input, button, textarea, select {
+  font: inherit;
+}
+
+/* 6. Avoid text overflows */
+p, h1, h2, h3, h4, h5, h6 {
+  overflow-wrap: break-word;
+}
+
+/* 7. Remove default list styles if needed */
+ol, ul {
+  list-style: none;
+}
