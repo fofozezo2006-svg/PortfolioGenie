@@ -1,24 +1,9 @@
 import * as userService from "../services/userService.js";
 import AppError from "../errors/AppError.js";
-import { uploadSingleImage } from "../middlewares/uploadImages.js";
-import { randomUUID } from "crypto";
-import sharp from "sharp";
 import jwt from "jsonwebtoken"
 import type { StringValue } from "ms";
 
-// middleware for uploading
-export const uploaduserImage = uploadSingleImage("profileImg");
 
-// middleware for resizing image
-export const resizeImage = async (req, res, next) => {
-    if (req.file) {
-        const fileName = `user-${randomUUID()}-${Date.now()}.jpeg`;
-        sharp(req.file.buffer).resize({ width: 600, height: 600 })
-            .toFormat("jpeg").toFile(`uploads/users/${fileName}`);
-        req.body.profileImg = fileName;
-    }
-    next();
-}
 
 
 // @desc get logged in user data

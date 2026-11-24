@@ -1,80 +1,85 @@
-import mongoose from 'mongoose';
+import { Schema, model } from "mongoose";
 
-const portfolioSchema = new mongoose.Schema({
-  user: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    required: true,
-  },
-  slug: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  Name: {
-    type: String,
-    required: true,
-  },
+const projectSchema = new Schema({
   title: {
     type: String,
     required: true,
+    trim: true,
   },
-  bio: {
+  description: {
     type: String,
     required: true,
   },
-  skills: {
+  technologies: {
     type: [String],
-    required: true,
+    default: [],
   },
-  experience: {
-    type: [
-      {
-        company: String,
-        role: String,
-        startDate: Date,
-        endDate: Date,
-        description: String,
-      },
-    ],
-    required: true,
-  },
-    education: {
-    type: [
-      {
-        institution: String,
-        degree: String,
-        startDate: Date,
-        endDate: Date,
-        description: String,
-      },
-    ],
-    required: true,
-  },
-  projects: {
-    type: [
-      {
-        name: String,
-        description: String,
-        link: String,
-        photo: String,
-      },],
-    required: true,
-  },
-  contact: {
-    type: {
-      email: String,
-      phone: String,
-      linkedin: String,
-      github: String,
-    },
-    required: true,
-  },
-  template: {
+  githubUrl: String,
+  liveUrl: String,
+});
+
+const educationSchema = new Schema({
+  institution: {
     type: String,
     required: true,
-  },}, { timestamps: true });
+  },
+  degree: {
+    type: String,
+    required: true,
+  },
+  field: {
+    type: String,
+    required: true,
+  },
+  startDate: {
+    type: Date,
+    required: true,
+  },
+  endDate: Date,
+  description: String,
+});
 
-const Portfolio = mongoose.model('Portfolio', portfolioSchema);
+const portfolioSchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    slug: {
+      type: String,
+      required: true,
+      unique: true,
+      lowercase: true,
+    },
+    description: String,
+
+    user: {
+      type: Schema.Types.ObjectId,
+      ref: "User",
+      required: true,
+    },
+
+    template: {
+      type: String,
+      enum: ["modern", "minimal", "creative"],
+      default: "modern",
+    },
+
+    isPublished: {
+      type: Boolean,
+      default: false,
+    },
+
+    projects: [projectSchema],
+
+    education: [educationSchema],
+  },
+  {
+    timestamps: true,
+  }
+);
+
+const Portfolio = model("Portfolio", portfolioSchema);
 
 export default Portfolio;

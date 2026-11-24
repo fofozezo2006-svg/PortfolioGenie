@@ -15,7 +15,6 @@ const userSchema = new mongoose.Schema(
             lowercase: true,
         },
         phone: String,
-        profileImg: String,
 
         password: {
             type: String,
@@ -24,7 +23,6 @@ const userSchema = new mongoose.Schema(
         },
         passwordChangedAt: Date,
         passwordResetCode: String,
-        emailVerificationCode: String,
         passwordResetExpires: Date,
         passwordResetVerified: Boolean,
         role: {
@@ -50,18 +48,6 @@ userSchema.pre("save", async function () {
     }
 })
 
-const setImageURL = doc => {
-    const imageURL = `${process.env.HOST_NAME}/users/${doc.profileImg}`
-    doc.profileImg = imageURL;
-}
-
-userSchema.post("init", (doc) => {
-    setImageURL(doc);
-})
-
-userSchema.post("save", doc => {
-    setImageURL(doc);
-})
 
 const User = mongoose.model('User', userSchema);
 

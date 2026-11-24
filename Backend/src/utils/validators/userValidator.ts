@@ -45,14 +45,7 @@ const updateLoggedUserValidationSchema = {
             options: ["any"] as const,
             errorMessage: "Invalid phone number",
         },
-    },
-
-    profileImg: {
-        optional: true,
-        isString: {
-            errorMessage: "Profile image must be a string",
-        },
-    },
+    }, 
 
     role: {
         optional: true,

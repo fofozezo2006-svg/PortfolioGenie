@@ -7,7 +7,7 @@ const userRouter = Router();
 
 userRouter.get("/api/v1/me",protect,userController.getMe);
 userRouter.patch("/api/v1/me/changePassword",protect,userValidator.changeMyPassword, userController.changeMyPassword)
-userRouter.patch("/api/v1/me/update",protect, userController.uploaduserImage,...userValidator.updateUser,userController.resizeImage,userController.updateMe)
+userRouter.patch("/api/v1/me/update",protect, ...userValidator.updateUser,userController.updateMe)
 userRouter.delete("/api/v1/me/delete", protect, userController.deleteMe)
 
 export default userRouter;
