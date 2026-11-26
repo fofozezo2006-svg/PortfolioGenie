@@ -1,0 +1,26 @@
+/* All class names here are hashed by CSS Modules, so they cannot collide
+   with the host platform's CSS. */
+
+/* Smooth scrolling for navbar anchor links.
+   scroll-behavior must be set on the <html> element, so this rule only
+   applies while the template is on the page (via :has). */
+html:has(.template) {
+  scroll-behavior: smooth;
+}
+
+/* Wrapper around the whole template (no styles needed, used as a hook above) */
+.template {
+  position: relative;
+}
+
+/* Keep section titles visible below the sticky navbar */
+.section {
+  scroll-margin-top: 70px;
+}
+
+/* Simple timeline look for education */
+.timelineItem {
+  border-left: 3px solid var(--bs-primary, #0d6efd);
+  padding-left: 1rem;
+  margin-bottom: 1.5rem;
+}
