@@ -195,25 +195,46 @@ npm run dev
 
 ---
 
-## 🔗 API Overview
+## 🔗 API Routes
 
-The backend exposes RESTful API endpoints for authentication, user management, and portfolio management.
+The backend provides RESTful API endpoints for authentication, user management, and portfolio management.
 
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/api/v1/auth/signup` | Register a new user |
-| POST | `/api/v1/auth/login` | Authenticate a user |
-| GET | `/api/v1/me` | Get authenticated user |
-| POST | `/api/v1/portfolios` | Create a portfolio |
-| GET | `/api/v1/portfolios` | Get user portfolios |
-| GET | `/api/v1/portfolios/:id` | Get portfolio by ID |
-| PATCH | `/api/v1/portfolios/:id` | Update portfolio |
-| DELETE | `/api/v1/portfolios/:id` | Delete portfolio |
-| POST | `/api/v1/portfolios/:id/publish` | Publish a portfolio |
-| GET | `/api/v1/portfolios/:slug` | Access a public portfolio |
+### 🔐 Authentication Routes
 
-*Note: Adjust endpoint paths to match your implemented routes.*
+Base path: `/api/v1/auth`
 
+| Method | Endpoint | Description | Access |
+|---|---|---|---|
+| POST | `/signup` | Register a new user | Public |
+| POST | `/signin` | Authenticate a user | Public |
+| POST | `/forgotPassword` | Request a password reset code | Public |
+| POST | `/verifyResetCode` | Verify the password reset code | Public |
+| POST | `/resetPassword` | Reset account password | Public |
+
+### 👤 User Routes
+
+| Method | Endpoint | Description | Access |
+|---|---|---|---|
+| GET | `/api/v1/me` | Get current user information | Private |
+| PATCH | `/api/v1/me/changePassword` | Change account password | Private |
+| PATCH | `/api/v1/me/update` | Update user information | Private |
+| DELETE | `/api/v1/me/delete` | Delete user account | Private |
+
+### 📁 Portfolio Routes
+
+| Method | Endpoint | Description | Access |
+|---|---|---|---|
+| POST | `/api/v1/portfolios` | Create a portfolio | Private |
+| GET | `/api/v1/portfolios` | Get authenticated user's portfolios | Private |
+| GET | `/api/v1/portfolios/:id` | Get portfolio by ID | Private |
+| PATCH | `/api/v1/portfolios/:id` | Update portfolio | Private |
+| DELETE | `/api/v1/portfolios/:id` | Delete portfolio | Private |
+| PATCH | `/api/v1/portfolios/:id/publish` | Publish a portfolio | Private |
+| GET | `/api/v1/portfolios/slug/:slug` | Get a public portfolio by slug | Public |
+
+**Access Levels:**
+- **Public:** Accessible without authentication.
+- **Private:** Requires a valid JWT authentication token.
 ---
 
 ## 🎯 Project Goals
@@ -222,17 +243,3 @@ PortfolioGenie aims to simplify the process of building an online professional p
 
 The goal is to make creating and sharing a professional portfolio simple, customizable, and accessible to everyone.
 
----
-
-## 👨‍💻 Author
-
-**Youssef Ehab**
-
-Computer Science & Artificial Intelligence Student  
-Cairo University
-
-GitHub: [@fofozezo2006-svg](https://github.com/fofozezo2006-svg)
-
----
-
-⭐ If you find PortfolioGenie interesting, consider giving the repository a star!
