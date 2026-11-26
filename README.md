@@ -132,17 +132,42 @@ cd Backend
 npm install
 ```
 
-Create a `.env` file in the Backend directory and configure your environment variables.
+## 🔑 Backend Environment Variables
 
-Example:
+Create a `.env` file inside the `Backend` directory and configure the following environment variables:
 
 ```env
+APP_NAME=PortfolioGenie
 PORT=5000
 NODE_ENV=development
-MONGO_URI=your_mongodb_connection_string
+HOST_NAME=localhost
+
+DB_CONNECTION_URI=your_mongodb_connection_string
+
 JWT_SECRET=your_jwt_secret
-JWT_EXPIRES_IN=your_jwt_expiration
+JWT_EXPIRE_DATE=90d
+
+MAIL_HOST=your_mail_host
+MAIL_PORT=your_mail_port
+MAIL_USER=your_mail_username
+MAIL_PASSWORD=your_mail_password
 ```
+
+| Variable | Description |
+|---|---|
+| `APP_NAME` | Application name |
+| `PORT` | Backend server port |
+| `NODE_ENV` | Application environment (development/production) |
+| `HOST_NAME` | Server hostname |
+| `DB_CONNECTION_URI` | MongoDB connection string |
+| `JWT_SECRET` | Secret key used to sign JWT tokens |
+| `JWT_EXPIRE_DATE` | JWT token expiration period |
+| `MAIL_HOST` | SMTP server hostname |
+| `MAIL_PORT` | SMTP server port |
+| `MAIL_USER` | Email account username |
+| `MAIL_PASSWORD` | Email account password |
+
+**Note:** Never commit your actual `.env` file or expose sensitive credentials on GitHub. Use placeholder values in `.env.example` instead.
 
 Start the backend:
 
