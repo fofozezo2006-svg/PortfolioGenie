@@ -56,8 +56,9 @@ Choose from different design styles:
 
 ---
 
-📁 Project Structure
+## 📁 Project Structure
 
+```text
 PortfolioGenie/
 │
 ├── Backend/
@@ -101,6 +102,7 @@ PortfolioGenie/
 │   └── vite.config.ts
 │
 └── README.md                # Project documentation
+```
 
 ## ⚙️ Getting Started
 
