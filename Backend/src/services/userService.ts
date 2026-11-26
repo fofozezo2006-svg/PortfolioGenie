@@ -2,7 +2,7 @@ import User from "../models/userModel.js";
 import bcrypt from "bcrypt"
 
 export const userSignup = (body)=>{
-    return User.create({ name: body.name, email: body.email, password: body.password, phone: body.phone, profileImg: body.profileImg});
+    return User.create({ name: body.name, email: body.email, password: body.password, phone: body.phone});
 
 }
 

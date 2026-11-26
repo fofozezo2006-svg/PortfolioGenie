@@ -51,13 +51,50 @@ export const signup = [
     validatorMiddleware
 ];
 
-
 export const signin = [
-    body("email")
-        .trim()
-        .notEmpty()
-        .withMessage("Email is required")
-        .isEmail()
-        .withMessage("Please provide a valid email"),
-    validatorMiddleware
+  body("email")
+    .trim()
+    .isEmail()
+    .withMessage("Please provide a valid email"),
+
+  body("password")
+    .notEmpty()
+    .withMessage("Password is required"),
+
+  validatorMiddleware,
+];
+
+export const forgotPassword = [
+  body("email")
+    .trim()
+    .isEmail()
+    .withMessage("Please provide a valid email"),
+
+  validatorMiddleware,
+];
+
+export const verifyResetCode = [
+  body("email")
+    .trim()
+    .isEmail()
+    .withMessage("Please provide a valid email"),
+
+  body("resetCode")
+    .matches(/^\d{6}$/)
+    .withMessage("Reset code must contain exactly 6 digits"),
+
+  validatorMiddleware,
+];
+
+export const resetPassword = [
+  body("email")
+    .trim()
+    .isEmail()
+    .withMessage("Please provide a valid email"),
+
+  body("password")
+    .isLength({ min: 8 })
+    .withMessage("Password must be at least 8 characters"),
+
+  validatorMiddleware,
 ];

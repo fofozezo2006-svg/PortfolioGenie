@@ -1,40 +1,280 @@
-/* 1. Use a more-intuitive box-sizing model */
-*, *::before, *::after {
-  box-sizing: border-box;
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root {
+  font-family: 'Inter', sans-serif;
+  color: #f8fafc;
+  background: #080b16;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+
+  --primary: #8b5cf6;
+  --primary-hover: #7c3aed;
+  --background: #080b16;
+  --card: #111625;
+  --border: #252d40;
+  --text-muted: #94a3b8;
 }
 
-/* 2. Remove default margins and paddings */
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-/* 3. Allow percentage-based heights and smooth scrolling */
-html, body {
-  height: 100%;
+body {
+  min-width: 320px;
+  min-height: 100vh;
 }
 
-html {
-  scroll-behavior: smooth;
+button,
+input {
+  font-family: inherit;
 }
 
-/* 4. Improve media defaults and prevent overflow */
-img, picture, video, canvas, svg {
-  max-width: 100%;
+a {
+  color: var(--primary);
+  text-decoration: none;
+}
+
+a:hover {
+  color: #a78bfa;
+}
+
+/* Layout */
+
+.auth-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  padding: 40px 20px;
+
+  background:
+    radial-gradient(
+      ellipse at 50% 0%,
+      rgba(139, 92, 246, 0.15),
+      transparent 55%
+    ),
+    var(--background);
+}
+
+.auth-card {
+  width: 100%;
+  max-width: 440px;
+
+  padding: 40px;
+
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.3);
+}
+
+/* Brand */
+
+.auth-brand {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  margin-bottom: 36px;
+
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+}
+
+.brand-icon {
+  width: 42px;
+  height: 42px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+  border-radius: 12px;
+}
+
+/* Heading */
+
+.auth-heading {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.auth-heading h1 {
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin-bottom: 10px;
+}
+
+.auth-heading p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: var(--text-muted);
+}
+
+/* Form */
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
   display: block;
+  margin-bottom: 9px;
+
+  font-size: 13px;
+  font-weight: 600;
+  color: #e2e8f0;
 }
 
-/* 5. Inherit fonts for form inputs */
-input, button, textarea, select {
-  font: inherit;
+.form-group input {
+  width: 100%;
+  height: 48px;
+
+  padding: 0 14px;
+
+  color: white;
+  background: #0b1020;
+
+  border: 1px solid var(--border);
+  border-radius: 9px;
+
+  outline: none;
+  font-size: 14px;
+
+  transition: 0.2s;
 }
 
-/* 6. Avoid text overflows */
-p, h1, h2, h3, h4, h5, h6 {
-  overflow-wrap: break-word;
+.form-group input::placeholder {
+  color: #64748b;
 }
 
-/* 7. Remove default list styles if needed */
-ol, ul {
-  list-style: none;
+.form-group input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(139, 92, 246, 0.12);
+}
+
+/* Button */
+
+.auth-button {
+  width: 100%;
+  height: 49px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  margin-top: 12px;
+
+  color: white;
+  background: linear-gradient(135deg, #8b5cf6, #6366f1);
+
+  border: none;
+  border-radius: 9px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.auth-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, #7c3aed, #4f46e5);
+  transform: translateY(-1px);
+}
+
+.auth-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Loading */
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Links */
+
+.forgot-link {
+  display: flex;
+  justify-content: flex-end;
+
+  margin-top: -7px;
+  margin-bottom: 20px;
+
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.auth-switch {
+  margin-top: 25px;
+
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.auth-switch a {
+  font-weight: 600;
+}
+
+/* Error */
+
+.error-message {
+  padding: 12px;
+  margin-bottom: 15px;
+
+  color: #fca5a5;
+  background: rgba(239, 68, 68, 0.1);
+
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  border-radius: 8px;
+
+  font-size: 13px;
+}
+
+/* Footer */
+
+.auth-footer {
+  margin-top: 30px;
+
+  font-size: 12px;
+  color: #64748b;
+  text-align: center;
+}
+
+/* Responsive */
+
+@media (max-width: 480px) {
+  .auth-card {
+    padding: 28px 22px;
+  }
+
+  .auth-heading h1 {
+    font-size: 23px;
+  }
+
+  .auth-brand {
+    margin-bottom: 28px;
+  }
 }
